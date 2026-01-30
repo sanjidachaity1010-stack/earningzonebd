@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earningzonebd</title>
+
+  <script src='//libtl.com/sdk.js' data-zone='10533636' data-sdk='show_10533636'></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #121212; color: #ffffff; }
+    .dark-bg { background-color: #121212; }
+    .card-bg { background-color: #1e1e1e; }
+    .border-accent { border-color: #ff8c00; }
+    .text-accent { color: #ff8c00; }
+    .btn-accent { background-color: #ff8c00; color: #121212; font-weight: bold; }
+    .input-field { background-color: #2c2c2c; border: 1px solid #444; color: white; }
+    .main-page { display: none; }
+    .main-page.active { display: flex; animation: fadeIn 0.5s ease-in-out; }
+    .sub-page { display: none; }
+    .sub-page.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+    .bottom-nav a.active { color: #ff8c00; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+
+<body class="max-w-md mx-auto">
+
+  <div id="loader" class="hidden fixed inset-0 dark-bg bg-opacity-75 flex items-center justify-center z-50">
+    <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-accent"></div>
+  </div>
+
+  <div id="timer-modal" class="hidden fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-6">
+    <div class="bg-gray-800 rounded-lg p-8 w-full max-w-sm text-center">
+      <h3 class="text-xl font-bold mb-4 text-accent">Please Wait</h3>
+      <div class="text-4xl font-bold mb-4" id="countdown-display">0</div>
+      <p class="text-gray-400 text-sm">Do not close the browser while the task is running.</p>
+    </div>
+  </div>
+
+  <div id="auth-section" class="min-h-screen p-6 flex-col justify-center main-page">
+    <h1 class="text-3xl font-bold text-center mb-2 text-accent">Earningzonebd</h1>
+    <div id="auth-container">
+      <div id="login-view">
+        <input id="login-email" type="email" placeholder="Email" class="w-full p-3 rounded-lg input-field mb-4">
+        <input id="login-password" type="password" placeholder="Password" class="w-full p-3 rounded-lg input-field mb-4">
+        <button id="login-btn" class="w-full p-3 rounded-lg btn-accent mb-4">Login</button>
+        <p class="text-center text-gray-400">New here? <a href="#" id="show-signup" class="text-accent">Sign Up</a></p>
+      </div>
+      <div id="signup-view" class="hidden">
+        <input id="signup-name" type="text" placeholder="Full Name" class="w-full p-3 rounded-lg input-field mb-4">
+        <input id="signup-email" type="email" placeholder="Email" class="w-full p-3 rounded-lg input-field mb-4">
+        <input id="signup-password" type="password" placeholder="Password" class="w-full p-3 rounded-lg input-field mb-4">
+        <button id="signup-btn" class="w-full p-3 rounded-lg btn-accent mb-4">Sign Up</button>
+        <p class="text-center text-gray-400">Have an account? <a href="#" id="show-login" class="text-accent">Login</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="app-container" class="min-h-screen flex-col main-page">
+    <header class="flex items-center justify-between p-4 sticky top-0 dark-bg z-10">
+      <h1 class="text-xl font-bold">Earningzonebd</h1>
+      <i data-lucide="user" class="w-6 h-6 cursor-pointer" onclick="navigateTo('profile-page')"></i>
+    </header>
+
+    <main class="flex-grow p-4">
+      <div id="home-page" class="space-y-6 sub-page">
+        <div class="card-bg p-4 rounded-lg flex items-center justify-between">
+          <div>
+            <p class="text-gray-400 text-sm">Balance</p>
+            <p class="text-3xl font-bold"><span id="coin-balance">0</span> Coins</p>
+          </div>
+          <button onclick="navigateTo('wallet-page')" class="bg-white text-black px-4 py-2 rounded-lg font-bold text-sm">Wallet</button>
+        </div>
+
+        <div class="space-y-3">
+          <h2 class="text-lg font-semibold">Tasks</h2>
+          
+          <button class="w-full bg-orange-600 p-4 rounded-lg flex justify-between font-bold" onclick="claimReward('video')">
+            <span>Watch Video Ad</span> <span>Claim</span>
+          </button>
+
+          <button class="w-full card-bg p-4 rounded-lg flex justify-between" onclick="visitWebsite('https://golperghorr.blogspot.com/', 20)">
+            <span>Website Visit 1</span> <span class="text-accent">Visit</span>
+          </button>
+
+          <button class="w-full card-bg p-4 rounded-lg flex justify-between" onclick="visitWebsite('https://newsbartaa724.blogspot.com/', 20)">
+            <span>Website Visit 2</span> <span class="text-accent">Visit</span>
+          </button>
+
+          <button class="w-full card-bg p-4 rounded-lg flex justify-between" onclick="visitWebsite('https://www.moviehousee1p.blogspot.com/', 20)">
+            <span>Website Visit 3</span> <span class="text-accent">Visit</span>
+          </button>
+
+          <button class="w-full border border-accent p-4 rounded-lg flex justify-between font-bold" onclick="visitWebsite('https://otieu.com/4/10540675', 30)">
+            <span>Special Task Click</span> <span class="text-accent">Start</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="wallet-page" class="sub-page">
+        <h2 class="text-xl font-bold mb-4">Withdraw</h2>
+        <div class="card-bg p-4 rounded-lg space-y-4">
+          <input id="withdraw-amount" type="number" placeholder="Coins" class="w-full p-3 rounded-lg input-field">
+          <select id="withdraw-method" class="w-full p-3 rounded-lg input-field">
+            <option value="Bkash">Bkash</option>
+            <option value="Nagad">Nagad</option>
+          </select>
+          <input id="payment-number" type="text" placeholder="Number" class="w-full p-3 rounded-lg input-field">
+          <button id="withdraw-btn" class="w-full p-3 rounded-lg btn-accent">Submit</button>
+        </div>
+      </div>
+
+      <div id="profile-page" class="sub-page text-center">
+        <div class="py-10">
+          <div class="w-20 h-20 bg-accent rounded-full mx-auto flex items-center justify-center mb-4">
+            <i data-lucide="user" class="text-black w-10 h-10"></i>
+          </div>
+          <h2 id="profile-name" class="text-xl font-bold">User Name</h2>
+          <p id="profile-email" class="text-gray-400">user@email.com</p>
+          <button id="logout-btn" class="mt-8 bg-red-600 px-10 py-2 rounded-lg font-bold">Logout</button>
+        </div>
+      </div>
+    </main>
+
+    <nav class="sticky bottom-0 grid grid-cols-3 text-center py-3 card-bg border-t border-gray-800">
+      <a href="#" class="nav-link active" onclick="navigateTo('home-page')">Home</a>
+      <a href="#" class="nav-link" onclick="navigateTo('wallet-page')">Wallet</a>
+      <a href="#" class="nav-link" onclick="navigateTo('profile-page')">Profile</a>
+    </nav>
+  </div>
+
+  <div id="custom-alert" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] p-4">
+    <div class="bg-gray-800 rounded-lg p-6 w-full max-w-xs text-center border border-accent">
+      <p id="alert-message" class="mb-4 text-sm"></p>
+      <button onclick="document.getElementById('custom-alert').classList.add('hidden')" class="btn-accent px-8 py-2 rounded-lg">OK</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDIj1eoNeBAkZceqXFjq4f1nPsjq5CPgU0",
+      authDomain: "free-earning-zone.firebaseapp.com",
+      projectId: "free-earning-zone",
+      storageBucket: "free-earning-zone.firebasestorage.app",
+      messagingSenderId: "774663821394",
+      appId: "1:774663821394:web:bf2202dd92bf7bf7e4a78b"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    let currentUser = null;
+    let userData = null;
+
+    window.navigateTo = (pageId) => {
+      document.querySelectorAll(".sub-page").forEach(p => p.classList.remove("active"));
+      document.getElementById(pageId).classList.add("active");
+    };
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        currentUser = user;
+        const snap = await getDoc(doc(db, "users", user.uid));
+        if (snap.exists()) {
+          userData = snap.data();
+        } else {
+          userData = { name: user.displayName || "User", email: user.email, balance: 50 };
+          await setDoc(doc(db, "users", user.uid), userData);
+        }
+        updateUI();
+        showMainPage('app-container');
+        navigateTo('home-page');
+      } else {
+        showMainPage('auth-section');
+      }
+    });
+
+    function updateUI() {
+      if (!userData) return;
+      document.getElementById('coin-balance').textContent = userData.balance;
+      document.getElementById('profile-name').textContent = userData.name;
+      document.getElementById('profile-email').textContent = userData.email;
+    }
+
+    function showMainPage(id) {
+      document.querySelectorAll('.main-page').forEach(p => p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    window.visitWebsite = (url, seconds) => {
+      window.open(url, '_blank');
+      const timerModal = document.getElementById('timer-modal');
+      const countdown = document.getElementById('countdown-display');
+      timerModal.classList.remove('hidden');
+      let timeLeft = seconds;
+      countdown.textContent = timeLeft;
+      const interval = setInterval(async () => {
+        timeLeft--;
+        countdown.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(interval);
+          timerModal.classList.add('hidden');
+          const newBalance = userData.balance + 50;
+          await updateDoc(doc(db, "users", currentUser.uid), { balance: newBalance });
+          userData.balance = newBalance;
+          updateUI();
+          showAlert("Task Complete! +50 Coins");
+        }
+      }, 1000);
+    };
+
+    window.claimReward = async () => {
+      if (typeof window.show_10533636 === 'function') {
+        try {
+          await window.show_10533636();
+          const newBalance = userData.balance + 50;
+          await updateDoc(doc(db, "users", currentUser.uid), { balance: newBalance });
+          userData.balance = newBalance;
+          updateUI();
+          showAlert("Reward Added!");
+        } catch (e) { showAlert("Ad error!"); }
+      }
+    };
+
+    document.getElementById('login-btn').onclick = async () => {
+      const email = document.getElementById('login-email').value;
+      const pass = document.getElementById('login-password').value;
+      try { await signInWithEmailAndPassword(auth, email, pass); } catch (e) { showAlert("Login Failed!"); }
+    };
+
+    document.getElementById('signup-btn').onclick = async () => {
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const pass = document.getElementById('signup-password').value;
+      try {
+        const res = await createUserWithEmailAndPassword(auth, email, pass);
+        await updateProfile(res.user, { displayName: name });
+      } catch (e) { showAlert("Signup Failed!"); }
+    };
+
+    document.getElementById('logout-btn').onclick = () => signOut(auth);
+    document.getElementById('show-signup').onclick = () => { document.getElementById('login-view').classList.add('hidden'); document.getElementById('signup-view').classList.remove('hidden'); };
+    document.getElementById('show-login').onclick = () => { document.getElementById('signup-view').classList.add('hidden'); document.getElementById('login-view').classList.remove('hidden'); };
+
+    function showAlert(m) {
+      document.getElementById('alert-message').textContent = m;
+      document.getElementById('custom-alert').classList.remove('hidden');
+    }
+
+    lucide.createIcons();
+  </script>
+</body>
+</html>
